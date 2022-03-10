@@ -20,7 +20,7 @@ spec:
         app: second-fast-apipython3
     spec:
       containers:
-      - image: parimalppatil/second-fast-apipython3:v3
+      - image: parimalppatil/second-fast-apipython3:latest
         imagePullPolicy: IfNotPresent
         name: python3-fastapi
       restartPolicy: Always 
