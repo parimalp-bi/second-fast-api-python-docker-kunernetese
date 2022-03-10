@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fast-apipython3
+  name: fast-apipython3
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fast-apipython3
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: fast-apipython3
+    spec:
+      containers:
+      - image: parimalppatil/python3-fastapi:v3
+        imagePullPolicy: IfNotPresent
+        name: python3-fastapi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: fast-apipython3
+  name: fast-apipython3
+spec:
+  # clusterIP: 10.12.6.111
+  # clusterIPs:
+  # - 10.12.6.111
+  # externalTrafficPolicy: Cluster
+  # ipFamilies:
+  # - IPv4
+  # ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30600
+    port: 4141
+    protocol: TCP
+    targetPort: 4141
+  selector:
+    app: fast-apipython3
+  sessionAffinity: None
+  type: LoadBalancer
+# status:
+#   loadBalancer:
+#     ingress:
+#     - ip: 34.71.143.182

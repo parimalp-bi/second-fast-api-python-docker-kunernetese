@@ -1,0 +1,6 @@
+python_app/venv/*
+python_app/__pycache__/*
+venv2/Lib/site-packages/typing_extensions.py
+venv2/pyvenv.cfg
+venv2/Lib/site-packages/*
+venv2/Scripts/*
